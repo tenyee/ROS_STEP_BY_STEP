@@ -1,0 +1,55 @@
+1.在修改source.list前，最好先备份一份
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.old
+　　
+2.执行命令打开source.list文件
+sudo gedit /etc/apt/sources.list
+　　
+3.复制源
+# deb cdrom:[Ubuntu 16.04 LTS _Xenial Xerus_ - Release amd64 (20160420.1)]/ xenial main restricted
+deb-src http://archive.ubuntu.com/ubuntu xenial main restricted #Added by software-properties
+deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial main restricted multiverse universe #Added by software-properties
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted multiverse universe #Added by software-properties
+deb http://mirrors.aliyun.com/ubuntu/ xenial universe
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe
+deb http://mirrors.aliyun.com/ubuntu/ xenial multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse #Added by software-properties
+deb http://archive.canonical.com/ubuntu xenial partner
+deb-src http://archive.canonical.com/ubuntu xenial partner
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted multiverse universe #Added by software-properties
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse
+
+4.配置你的电脑使其能够安装来自 packages.ros.org 的软件，使用国内或者新加坡的镜像源，这样能够大大提高安装下载速度
+sudo sh -c '. /etc/lsb-release && echo "deb http://mirrors.ustc.edu.cn/ros/ubuntu/ $DISTRIB_CODENAME main" > /etc/apt/sources.list.d/ros-latest.list'
+5.添加key
+sudo apt-key adv --keyserver hkp://pool.sks-keyservers.net --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+
+6.更新：
+sudo apt-get update
+
+7.安装ROS
+sudo apt-get install ros-kinetic-desktop-full
+
+8.初始化rosdep
+sudo rosdep init
+rosdep update
+
+9.设置环境变量
+echo "source /opt/ros/kinetic/setup.bash" >> ˜/.bashrc
+source ˜/.bashrc
+
+测试安装，运行：roscode
+
+
+10.其它工具安装
+sudo apt-get install python-rosinstall python-rosinstall-generator python-wetool build-essential
+
+[参考资料]
+https://www.cnblogs.com/BambooEatPanda/p/8638458.html
+
+
